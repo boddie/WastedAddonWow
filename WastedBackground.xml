@@ -1,0 +1,44 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Frame name="WastedBackground" parent="UIParent" frameStrata="BACKGROUND">
+		<Scripts>
+			<OnLoad>
+				self:Hide()
+				self:RegisterEvent("PLAYER_DEAD")
+				self:RegisterEvent("PLAYER_ALIVE")
+			</OnLoad>
+			<OnEvent>
+				if event == "PLAYER_DEAD" then
+					self:Show()
+				elseif event == "PLAYER_ALIVE" then
+					self:Hide()
+				end
+			</OnEvent>
+		</Scripts>
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<RelDimension x="1" y="1"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTitle" file="Interface/AddOns/Wasted/Border.tga">
+					<Size>
+						<RelDimension x="1" y="0.5"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<RelDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

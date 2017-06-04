@@ -1,0 +1,9 @@
+## Interface: 70200
+## Title: Wasted
+## Author: James Boddie
+## Version 1.0
+## Notes: Adds the GTA 5 Wasted effect to deaths
+
+WastedSoundHandler.lua
+WastedBackground.xml
+WastedOverlay.xml

@@ -1,0 +1,69 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Frame name="WastedOverlay" parent="UIParent" frameStrata="BACKGROUND">
+		<Scripts>
+			<OnLoad>
+				local frame = CreateFrame("Frame")
+				wastedTimer = 0
+				local function onUpdate()
+					if (wastedTimer ~= 0) and (GetTime() >= wastedTimer) then
+						wastedTimer = 0
+						self:Show()
+					end
+				end
+				frame:SetScript("OnUpdate", onUpdate);
+			
+				self:Hide()
+				self:RegisterEvent("PLAYER_DEAD")
+				self:RegisterEvent("PLAYER_ALIVE")
+			</OnLoad>
+			<OnEvent>
+				if event == "PLAYER_DEAD" then
+					wastedTimer = GetTime() + 2.5
+				elseif event == "PLAYER_ALIVE" then
+					wastedTimer = 0
+					self:Hide()
+				end
+			</OnEvent>
+		</Scripts>
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<RelDimension x="1" y="1"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTitle" file="Interface/AddOns/Wasted/Shade.tga">
+					<Size>
+						<RelDimension x="1" y="0.1"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<RelDimension x="0" y="0.04"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTitle" file="Interface/AddOns/Wasted/Wasted.tga">
+					<Size>
+						<RelDimension x="0.4" y="0.1"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<RelDimension x="0" y="0.04"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>
